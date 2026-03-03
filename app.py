@@ -49,7 +49,7 @@ filtered_df = df[(df['area_m2'] >= min_size) & (df['area_m2'] <= max_size)]
 
 # 4. INTERACTIVE MAP
 st.subheader("Interactive Parcel Explorer")
-m = folium.Map(location=[-0.6027211,36.9512379], zoom_start=15)
+m = folium.Map(location=[-0.6025998,36.9538168], zoom_start=16)
 
 # Download button
 csv_data = filtered_df.drop(columns=['geom']).to_csv(index=False).encode('utf-8')
@@ -74,3 +74,4 @@ for _, row in filtered_df.iterrows():
 
 # Render the map in Streamlit
 st_folium(m, width=1000, height=500)
+
