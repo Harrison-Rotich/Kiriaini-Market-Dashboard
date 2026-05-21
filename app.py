@@ -11,7 +11,7 @@ st.title("🌐 Cloud-Native Spatial Analytics Engine")
 
 # 1. DIRECT REMOTE CLOUD STORAGE URL
 # Replace this with your actual GitHub Raw token link
-CLOUD_PARQUET_URL = "https://raw.githubusercontent.com/YOUR_USERNAME/kiriaini-market-dashboard/main/kiriaini_parcels.parquet"
+CLOUD_PARQUET_URL = "https://github.com/Harrison-Rotich/Kiriaini-Market-Dashboard/raw/refs/heads/main/Kiriaini_Parcels.parquet"
 
 # 2. STREAMING DATA VIA DUCKDB
 @st.cache_data
@@ -25,8 +25,8 @@ def stream_cloud_data():
     query = f"""
         SELECT 
             id as parcel_id, 
-            ST_Area(ST_GeomFromWKB(geometry)) * 111000 * 111000 as area_m2, -- Rough degree to meter conversion for stats
-            ST_AsGeoJSON(ST_GeomFromWKB(geometry)) as geom
+            ST_Area(geometry) * 111000 * 111000 as area_m2, -- Rough degree to meter conversion for stats
+            ST_AsGeoJSON(geometry) as geom
         FROM read_parquet('{CLOUD_PARQUET_URL}')
     """
     df = db.execute(query).df()
