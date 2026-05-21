@@ -1,68 +1,77 @@
-# Kiriaini Market: Spatial Data Dashboard
-A lightweight Streamlit-based geospatial analytics dashboard for exploring parcel data within Kiriaini Market. This application provides interactive spatial visualization, parcel statistics, dynamic valuation, and exportable reports.
- 
- **Overview**
-The Kiriaini Market Analytics Dashboard enables users to:
-Visualize parcel boundaries on an interactive map
-Analyze parcel size distribution
-Compute total market area
-Estimate total market value based on a dynamic unit price
-Filter parcels by size
-Download filtered parcel reports
+# Cloud-Native Spatial Analytics Engine
+A lightweight Streamlit dashboard for real-time spatial analytics and parcel visualization in Kiriaini Market. The application streams geospatial parcel data directly from cloud storage using DuckDB, enabling fast serverless analysis, interactive mapping, valuation modeling, and parcel insights.
 
-**Built using:**
-Streamlit – Web application framework
-Pandas – Data processing
-Folium – Interactive mapping
-streamlit-folium – Folium integration in Streamlit
+## Overview
+The dashboard enables users to:
+* Visualize parcel boundaries on an interactive Folium map
+* Stream spatial data directly from cloud-hosted Parquet files
+* Compute parcel statistics in real time
+* Estimate market value using dynamic price inputs
+* Explore parcel geometry with hover-based tooltips
+* Run serverless spatial SQL queries using DuckDB
 
- **Data Source**
-The application loads parcel data from a local Parquet file:
-Kiriaini_Parcels.parquet
+## Built With
+* Streamlit — Interactive web application framework
+* DuckDB — In-memory analytics and spatial SQL engine
+* Folium — Interactive geospatial visualization
+* streamlit-folium — Folium integration for Streamlit
+* Pandas — Data processing and analytics
 
-**Expected fields:**
-Column	Description
-parcel_id	Unique parcel identifier
-area_m2	Parcel area in square meters
-geom	GeoJSON geometry (string format)
+## Data Source
+The application loads parcel data directly from a remote cloud-hosted Parquet file:
+`kiriaini_parcels.parquet`
 
-**Features**
-1. Market Statistics (Sidebar)
-Total number of parcels
-Total market area (m²)
-Average parcel size
-2. Valuation Tool
-User-defined Price per m² (KES)
-Real-time calculation of total market value
-3. Parcel Size Filter
-Interactive slider to filter parcels by area
-Map and export update dynamically
-4. Interactive Parcel Explorer
-GeoJSON parcel visualization
-Hover tooltips displaying parcel ID
-Zoomable and pannable Folium map
-5. Export Functionality
-Download filtered dataset as CSV
-Geometry excluded for reporting purposes
-6. Map Configuration
-Center: [-0.6027211, 36.9512379]
-Zoom Level: 15
-Rendered using Folium and embedded in Streamlit
+Expected fields:
+| Column   | Description                   |
+| -------- | ----------------------------- |
+| id       | Unique parcel identifier      |
+| geometry | Parcel geometry in WKB format |
 
-**Installation**
-pip install streamlit pandas folium streamlit-folium pyarrow
-Run the Application
+## Core Features
+### Cloud-Native Spatial Streaming
+* Reads Parquet data directly from remote storage
+* No local database required
+* Fast columnar querying with DuckDB
+
+### Spatial Analytics
+* Automated parcel area computation
+* Real-time market statistics
+* Average and total parcel size metrics
+
+### Dynamic Valuation Engine
+* User-defined price per m² (KES)
+* Instant total market value estimation
+
+### Interactive Map Explorer
+* GeoJSON parcel rendering
+* Hover tooltips with parcel ID and area
+* Zoomable and pannable Folium map
+
+### Serverless Architecture
+* Fully in-memory processing
+* Spatial extensions enabled dynamically
+* Lightweight deployment workflow
+
+## Map Configuration
+* Center: `[-0.6025998, 36.9538168]`
+* Zoom Level: `17`
+* Powered by Folium + Streamlit
+
+## Installation
+pip install streamlit pandas duckdb folium streamlit-folium pyarrow
+
+## Run the Application
 streamlit run app.py
-Ensure Kiriaini_Parcels.parquet is in the same directory as the application file.
+Update the `CLOUD_PARQUET_URL` variable with your GitHub Raw or cloud storage Parquet URL before deployment.
 
-**Use Cases**
-Market spatial analysis
-Land valuation estimation
-Urban planning insights
-Investment feasibility assessment
-Parcel-level reporting
+## Use Cases
+* Spatial market intelligence
+* Land valuation analysis
+* Cloud-native GIS prototyping
+* Parcel-level spatial reporting
+* Lightweight geospatial dashboards
 
-**License**
-This project is intended for analytical and educational use. Modify and extend as needed.
-Author: _Hari Spatial_
-Built with: Streamlit & Folium
+## License
+Intended for analytical, educational, and experimental geospatial applications.
+**Author:** Hari Spatial
+**Built with:** Streamlit, DuckDB & Folium
